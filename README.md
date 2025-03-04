@@ -15,6 +15,6 @@ function App() {
 }
 
 const s = renderToString(<App />)
-console.log(s)
+print(s)
 
 ```

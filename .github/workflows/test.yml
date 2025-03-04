@@ -1,0 +1,48 @@
+name: test
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - "v*"
+    branches:
+      - "main"
+  pull_request:
+
+defaults:
+  run:
+    shell: bash --noprofile --norc -CeEuo pipefail {0}
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-apple-darwin
+            os: macos-13
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-pc-windows-gnu
+            os: windows-latest
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+    name: build-${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: install mujs
+        uses: ahaoboy/easy-setup@v1
+        with:
+          url: |-
+            https://github.com/ahaoboy/mujs-build
+            https://github.com/pnpm/pnpm
+      - name: react
+        run: |
+          pnpm install
+          pnpm run build
+
+          mujs es5/index.js
+          mujs es5/bench.js
