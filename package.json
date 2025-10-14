@@ -27,11 +27,14 @@
     "esbuild:babel": "babel --presets  @babel/preset-env ./esbuild -d babel",
     "build:esbuild": "pnpm run esbuild:bundle && pnpm run esbuild:babel",
     "build:vite": "vite build",
+    "build:rsbuild": "rsbuild build",
     "format": "deno fmt --ignore=node_modules,dist,bundle,target --indent-width=2 --no-semicolons --single-quote",
     "clear": "rm -rf node_modules dist bundle"
   },
   "dependencies": {
     "@mpv-easy/polyfill": "0.1.15-alpha.17",
+    "@rsbuild/core": "^1.5.17",
+    "@rsbuild/plugin-react": "^1.4.1",
     "@vitejs/plugin-legacy": "^7.2.1",
     "vite": "^7.1.10"
   },
