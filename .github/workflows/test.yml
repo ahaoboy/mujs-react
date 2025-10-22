@@ -46,7 +46,7 @@ jobs:
         run: |
           pnpm install
           for dir in esbuild vite rsbuild rspack rollup rolldown; do
-            pnpm run ${dir}:bundle
+            pnpm run build:${dir}
           done
       - name: run
         run: |
@@ -54,7 +54,7 @@ jobs:
       - name: zip
         if: matrix.target == 'x86_64-unknown-linux-gnu'
         run: |
-          for dir in esbuild babel; do
+          for dir in esbuild babel vite rsbuild rspack rollup rolldown; do
             if [ -d "$dir" ]; then
               (cd "$dir" && zip -r "../${dir}.zip" .)
             else
