@@ -3,6 +3,9 @@ name: test
 permissions:
   contents: write
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 on:
   push:
     tags:
@@ -43,5 +46,28 @@ jobs:
         run: |
           pnpm install
           pnpm run build:esbuild
+          # pnpm run build:vite
+          # pnpm run build:rsbuild
+          # pnpm run build:rspack
+          # pnpm run build:rollup
+          # pnpm run build:rolldown
 
-          mujs es5/index.js
+
+          mujs babel/index.js
+      - name: zip
+        if: matrix.target == 'x86_64-unknown-linux-gnu'
+        run: |
+          for dir in esbuild babel; do
+            if [ -d "$dir" ]; then
+              (cd "$dir" && zip -r "../${dir}.zip" .)
+            else
+              echo "Directory $dir does not exist, skipping zipping."
+            fi
+          done
+      - name: release nightly
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "nightly"
+          artifacts: "./*.zip"
+          allowUpdates: true
+          makeLatest: false
