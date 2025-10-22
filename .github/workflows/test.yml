@@ -42,17 +42,14 @@ jobs:
           url: |-
             https://github.com/ahaoboy/mujs-build
             https://github.com/pnpm/pnpm
-      - name: react
+      - name: build
         run: |
           pnpm install
-          pnpm run build:esbuild
-          # pnpm run build:vite
-          # pnpm run build:rsbuild
-          # pnpm run build:rspack
-          # pnpm run build:rollup
-          # pnpm run build:rolldown
-
-
+          for dir in esbuild vite rsbuild rspack rollup rolldown; do
+            pnpm run ${dir}:bundle
+          done
+      - name: run
+        run: |
           mujs babel/index.js
       - name: zip
         if: matrix.target == 'x86_64-unknown-linux-gnu'
