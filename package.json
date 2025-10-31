@@ -23,6 +23,7 @@
   "author": "ahaoboy",
   "license": "ISC",
   "scripts": {
+    "postinstall": "bun simple-git-hooks",
     "esbuild:bundle": "esbuild ./src/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"' --minify",
     "esbuild:babel": "babel --presets  @babel/preset-env ./esbuild -d babel",
     "build:esbuild": "pnpm run esbuild:bundle && pnpm run esbuild:babel",
@@ -31,6 +32,7 @@
     "build:rspack": "rspack build",
     "build:rollup": "rollup -c",
     "build:rolldown": "rolldown -c",
+    "build:bunup": "bunup",
     "format": "deno fmt --ignore=node_modules,dist,bundle,target --indent-width=2 --no-semicolons --single-quote",
     "clear": "rm -rf node_modules dist bundle"
   },
@@ -49,7 +51,11 @@
     "i": "^0.3.7",
     "rolldown": "1.0.0-beta.43",
     "rollup-plugin-polyfill-node": "^0.13.0",
-    "vite": "^7.1.10"
+    "vite": "^7.1.10",
+    "@types/bun": "^1.3.1",
+    "bunup": "^0.15.12",
+    "bumpp": "^10.3.1",
+    "simple-git-hooks": "^2.13.1"
   },
   "devDependencies": {
     "@babel/cli": "7.28.3",

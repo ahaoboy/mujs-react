@@ -13,3 +13,5 @@
 /rollup
 /rolldown
 /*.zip
+/bun.lock
+/bunup
