@@ -76,6 +76,9 @@
     "simple-git-hooks": "2.13.1",
     "typescript": "5.9.3"
   },
+  "simple-git-hooks": {
+    "pre-commit": "echo pre-commit"
+  },
   "pnpm": {
     "neverBuiltDependencies": []
   }
