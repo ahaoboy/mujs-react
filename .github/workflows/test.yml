@@ -36,6 +36,9 @@ jobs:
     name: build-${{ matrix.target }}
     steps:
       - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: install mujs
         uses: ahaoboy/easy-setup@v1
         with:
