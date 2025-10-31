@@ -47,7 +47,8 @@ jobs:
             https://github.com/pnpm/pnpm
       - name: build
         run: |
-          pnpm install
+          # pnpm install
+          bun install
           for dir in esbuild; do
             pnpm run build:${dir}
           done
