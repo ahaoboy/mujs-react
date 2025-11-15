@@ -18,3 +18,4 @@
 /.kiro
 /tsc
 /esbuild-tsc
+/webpack

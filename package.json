@@ -24,8 +24,8 @@
   "license": "ISC",
   "scripts": {
     "postinstall": "bun simple-git-hooks",
-    "esbuild:bundle": "esbuild ./src/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"' --minify --target=es5",
-    "esbuild:bundle-tsc": "esbuild ./tsc/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"' --minify --target=es5",
+    "esbuild:bundle": "esbuild ./src/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"' --minify",
+    "esbuild:bundle-tsc": "esbuild ./tsc/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"' --minify",
     "esbuild:babel": "babel --presets  @babel/preset-env ./esbuild -d babel",
     "build:esbuild": "pnpm run esbuild:bundle && pnpm run esbuild:babel",
     "build:vite": "vite build",
@@ -35,6 +35,7 @@
     "build:rolldown": "rolldown -c",
     "build:bunup": "bunup",
     "build:tsc": "tsc -p tsconfig.es5.json",
+    "build:webpack": "webpack --config webpack.config.js",
     "format": "deno fmt --ignore=node_modules,dist,bundle,target --indent-width=2 --no-semicolons --single-quote",
     "clear": "rm -rf node_modules dist bundle"
   },
@@ -59,7 +60,9 @@
     "quick-lru": "^7.3.0",
     "rolldown": "1.0.0-beta.50",
     "rollup-plugin-polyfill-node": "0.13.0",
-    "vite": "7.2.2"
+    "vite": "7.2.2",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.28.3",
