@@ -1,7 +1,7 @@
 import babel from 'esbuild-plugin-babel';
 import { build } from "esbuild"
 import fs from "node:fs"
-import { ReactCompilerEsbuildPlugin } from './ReactCompilerPlugin'
+import { ES5BabelPlugin } from './ES5BabelPlugin'
 
 build({
   entryPoints: ["./tsc/*"],
@@ -20,16 +20,7 @@ build({
   // metafile: true,
   format: "esm",
   plugins: [
-    ReactCompilerEsbuildPlugin({
-      es5: true
-    })
-    // babel({
-    //   config: {
-    //     presets: [
-    //       ['@babel/preset-env', { targets: 'ie 11', useBuiltIns: 'usage', corejs: 3 }]
-    //     ]
-    //   }
-    // })
+    ES5BabelPlugin()
   ]
 })
   .then((r) => {
