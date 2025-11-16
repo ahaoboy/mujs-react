@@ -37,6 +37,7 @@
     "build:farm": "farm build",
     "build:tsc": "tsc -p tsconfig.es5.json",
     "build:swc": "swc ./esbuild/index.js -o ./swc/index.js --sync",
+    "build:swcpack": "spack ./tsc/index.js -o ./swc/index.js",
     "build:webpack": "webpack --config webpack.config.js",
     "format": "deno fmt --ignore=node_modules,dist,bundle,target --indent-width=2 --no-semicolons --single-quote",
     "clear": "rm -rf node_modules dist bundle"
