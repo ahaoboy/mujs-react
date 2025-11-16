@@ -19,3 +19,4 @@
 /tsc
 /esbuild-tsc
 /webpack
+/swc
