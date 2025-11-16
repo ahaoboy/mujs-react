@@ -24,7 +24,7 @@
   "license": "ISC",
   "scripts": {
     "postinstall": "bun simple-git-hooks",
-    "esbuild:bundle": "esbuild ./src/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"'",
+    "esbuild:bundle": "esbuild ./src/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"' --minify",
     "esbuild:bundle-tsc": "esbuild ./tsc/* --bundle --outdir=esbuild --charset=utf8 --define:process.env.NODE_ENV='\"production\"' --minify",
     "esbuild:babel": "babel --presets  @babel/preset-env ./esbuild -d babel",
     "build:esbuild": "pnpm run esbuild:bundle && pnpm run esbuild:babel",
@@ -34,6 +34,7 @@
     "build:rollup": "rollup -c",
     "build:rolldown": "rolldown -c",
     "build:bunup": "bunup",
+    "build:farm": "farm build",
     "build:tsc": "tsc -p tsconfig.es5.json",
     "build:swc": "swc ./esbuild/index.js -o ./swc/index.js --sync",
     "build:webpack": "webpack --config webpack.config.js",
@@ -43,6 +44,8 @@
   "dependencies": {
     "@babel/plugin-syntax-jsx": "7.27.1",
     "@babel/preset-react": "7.28.5",
+    "@farmfe/cli": "^1.0.5",
+    "@farmfe/core": "^1.7.11",
     "@mpv-easy/polyfill": "0.1.15-alpha.17",
     "@rollup/plugin-alias": "6.0.0",
     "@rsbuild/core": "1.6.6",
@@ -59,7 +62,6 @@
     "bumpp": "10.3.1",
     "bunup": "0.15.14",
     "esbuild-plugin-babel": "^0.2.3",
-    "i": "0.3.7",
     "quick-lru": "^7.3.0",
     "rolldown": "1.0.0-beta.50",
     "rollup-plugin-polyfill-node": "0.13.0",
